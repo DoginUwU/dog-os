@@ -24,8 +24,8 @@ puts:
         jz .done ; jump to destination if zero flag is set (finished)
 
         mov ah, 0x0e ; call bios interrupt
-        mov bh, 0 ; page number0
-        int 0x10
+        mov bh, 0 ; page number 0
+        int 0x10 ; call 10h - BIOS video service
 
         jmp .loop
         
@@ -60,4 +60,4 @@ main:
 msg_hello: db 'Hello, World!', ENDL, 0
 
 times 510-($-$$) db 0 ; repeat N times, caculate the rest of bytes left to 510 | $ represent the current address loc | $$ represent the start address loc | db filll bytes with 0
-dw 0AA55h ; define 2 byte value
+dw 0AA55h ; define 4 bytes value
