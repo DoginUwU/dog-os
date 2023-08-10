@@ -17,23 +17,23 @@ puts:
     push ax
     push si
 
-; loop for characters
-.loop:
-    lodsb ; load next character
-    or al, al ; verify if next character isnt null
-    jz .done ; jump to destination if zero flag is set (finished)
+    ; loop for characters
+    .loop:
+        lodsb ; load next character
+        or al, al ; verify if next character isnt null
+        jz .done ; jump to destination if zero flag is set (finished)
 
-    mov ah, 0x0e ; call bios interrupt
-    mov bh, 0 ; page number0
-    int 0x10
+        mov ah, 0x0e ; call bios interrupt
+        mov bh, 0 ; page number0
+        int 0x10
 
-    jmp .loop
-    
-; finished load characters
-.done:
-    pop ax
-    pop si
-    ret
+        jmp .loop
+        
+    ; finished load characters
+    .done:
+        pop ax
+        pop si
+        ret
 
 
 main:
@@ -52,8 +52,8 @@ main:
 
     hlt ; Hold the CPU
 
-.halt:
-    jmp .halt ; goto (infinite loop)
+    .halt:
+        jmp .halt ; goto (infinite loop)
 
 
 
